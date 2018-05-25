@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <a class="share-link" href="#">
+    <a class="share-link" :href="href">
     	<slot></slot>
     	<span class="share-link__num">{{num}}</span>
     </a>
@@ -12,7 +12,7 @@
 <script>
 export default {
   name: 'ShareLink',
-  props: ['num'],
+  props: ['num', 'href'],
   data () {
     return {
       msg: ''

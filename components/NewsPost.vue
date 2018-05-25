@@ -11,20 +11,22 @@
         <img :src="url">
       </div>
 
-      
-        <div class="news-post__descr">
-          <slot></slot>
-          <transition name="fade">
-            <div v-if="show">{{descrMore}}</div>
-          </transition>
+      <div class="news-post__descr">
+        <slot></slot>
+        <transition name="fade">
+          <div v-if="show">
+            <p>{{descr1}}</p>
+            <p>{{descr2}}</p>
           </div>
-      
+        </transition>
+      </div>
 
       <button v-if="btn" class="news-post__btn" @click="show = !show">
         <span class="news-post__btn-icon">
           <img src="/arrow2.svg">
         </span>
-        <span>Read More</span>
+        <span v-if="!show">Read More</span>
+        <span v-else>Hide</span>
       </button>
 
     </div>
@@ -37,7 +39,7 @@
 export default {
   name: 'NewsPost',
   transition: 'fade',
-  props: ['title', 'date', 'url','btn', 'mod', 'descrMore'],
+  props: ['title', 'date', 'url','btn', 'mod', 'descr1', 'descr2'],
   data () {
     return {
       msg: 'NewsPost',
@@ -56,6 +58,7 @@ export default {
   margin-bottom: 45px
   padding-bottom: 40px
   border-bottom: 1px solid #d4d4d4
+  transition: height 1s ease
   &[data-mod*=border-none]
     border: none
 
@@ -91,6 +94,7 @@ export default {
     line-height: 1.6
     p
       margin-bottom: 25px
+      
 
   &__btn
     display: flex
@@ -99,6 +103,8 @@ export default {
     color: black
     background-color: transparent
     border: none
+    cursor: pointer
+    outline: none
 
     margin-top: 40px
 
@@ -117,11 +123,34 @@ export default {
       height: 20px
       transform: rotate(180deg)
 
-.fade-enter-active, .fade-leave-active 
-  transition: all 0.25s ease-out
+.fade-enter-active
+  transition: all 0.5s ease-out
+  // animation-name: example
+  // animation-duration: 1s
 
-.fade-enter, .fade-leave-to 
+.fade-leave-active 
+  transition: all 0.5s ease-out
+  // animation-name: example2
+  // animation-duration: 2s
+
+.fade-enter
+  opacity: 0
+  transform: translate(0, -100px)
+  
+.fade-leave-to
   opacity: 0
   transform: translate(0, 100px)
+
+// @keyframes example 
+//     from 
+//       height: 0
+//     to 
+//       height: 150px
+
+// @keyframes example2 
+//     from 
+//       height: 150px
+//     to 
+//       height: 0
 
 </style>
