@@ -58,7 +58,6 @@ export default {
   margin-bottom: 45px
   padding-bottom: 40px
   border-bottom: 1px solid #d4d4d4
-  transition: height 1s ease
   &[data-mod*=border-none]
     border: none
 
@@ -125,32 +124,37 @@ export default {
 
 .fade-enter-active
   transition: all 0.5s ease-out
-  // animation-name: example
-  // animation-duration: 1s
+  animation-name: example
+  animation-duration: 1s
 
 .fade-leave-active 
   transition: all 0.5s ease-out
-  // animation-name: example2
-  // animation-duration: 2s
+  animation-name: example2
+  animation-duration: 1s
 
 .fade-enter
-  opacity: 0
-  transform: translate(0, -100px)
   
 .fade-leave-to
-  opacity: 0
-  transform: translate(0, 100px)
 
-// @keyframes example 
-//     from 
-//       height: 0
-//     to 
-//       height: 150px
+@keyframes example 
+    0%   
+      opacity: 0
+      transform: scale(0)
 
-// @keyframes example2 
-//     from 
-//       height: 150px
-//     to 
-//       height: 0
+    50%  
+      transform: scale(1.1)
+
+    100% 
+      opacity: 1
+      transform: scale(1)
+      
+@keyframes example2 
+    0%   
+      opacity: 1
+      transform: scale(1)
+
+    100% 
+      opacity: 0
+      transform: scale(0)
 
 </style>
